@@ -1,10 +1,39 @@
 import React,{Component} from 'react';
 import Grid from '@material-ui/core/Grid';
 
+const server_url = "http://192.168.1.24:8080";
 
 export default class Home extends Component{
+    constructor(props) {
+        super(props);
+        this.state = {
+            input: '',
+            output: '',
+        };
+        this.executeCode = this.executeCode.bind(this);
+    }
+    async executeCode(){
+        const rawResponse = await fetch(server_url, {
+            method: 'POST',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                code: this.state.input
+            })
+        });
+        const content = await rawResponse.json();
+        console.log(content);
+        this.setState({ output: content.result});
+
+    }
+    add(event){
+        console.log(event.keyCode); //press TAB and get the keyCode
+    }
 
     render(){
+
         return(
             <section id="service" className="service-python">
                 <div className="jumbotron jumbotron-fluid">
@@ -13,14 +42,44 @@ export default class Home extends Component{
                         <p className="lead">By Anibal Ventura</p>
                     </div>
                 </div>
-                <div className="container">
-                    <div className="row">
-                        <div className="col-md-6">
-                            hola
+                <div className="sidebar-wrapper">
+                    <a href="#" title="Python">
+                        <img src={"/img/python.png"} alt="" width="100%"/>
+                    </a>
+                </div>
+                <div className="editor-wrapper">
+                    <div className="editor-desktop-top-bar">
+                        <div className="file-name">main.py</div>
+                        <div className="desktop-top-bar">
+                            <button className="desktop-run-button run" onClick={this.executeCode}>Run</button>
                         </div>
-                        <div className="col-md-6">
-                            print
+                    </div>
+
+                    <div id="editor">
+                        <div className="row no-gutters">
+                            <div className="col-1 lines">
+                                <div className="text-center">
+                                    1
+                                </div>
+                            </div>
+                            <div className="col-11">
+                                <textarea className="form-control" wrap="off" autoCorrect="off" autoCapitalize="off"
+                                          spellCheck="false" value={this.state.input}
+                                          onKeyDown={this.add}
+                                          onChange={(event) => this.setState({input: event.target.value})}
+                                />
+                            </div>
                         </div>
+                    </div>
+                </div>
+                <div className="terminal-wrapper">
+                    <div className="terminal-desktop-top-bar">
+                        <div className="shell-name">
+                            Output
+                        </div>
+                    </div>
+                    <div id="terminal">
+                        { this.state.output }
                     </div>
                 </div>
             </section>
