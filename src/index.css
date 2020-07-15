@@ -79,10 +79,10 @@ code {
   margin: 0 20px 0 16px;
 }
 #editor .lines{
-  padding: 0.375rem 0.75rem;
+  padding: 10px;
 }
 #terminal{
-  padding: 0.375rem 0.75rem;
+  padding: 10px;
 }
 textarea.form-control {
   height: calc(100vh - 140px) !important;
@@ -96,6 +96,7 @@ textarea.form-control {
   .editor-wrapper, .terminal-wrapper {
     width: calc(50% - 1px - 28px);
     float: left;
+    font-size: 12px;
   }
 
   .editor-wrapper {
