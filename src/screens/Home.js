@@ -1,9 +1,6 @@
 import React,{Component} from 'react';
-import Grid from '@material-ui/core/Grid';
 import Editor from 'react-simple-code-editor';
 import { highlight, languages } from 'prismjs/components/prism-core';
-import 'prismjs/components/prism-clike';
-import 'prismjs/components/prism-markup';
 require('prismjs/components/prism-python');
 
 const server_url = "http://192.168.1.24:8080";
@@ -15,8 +12,20 @@ export default class Home extends Component{
             input: '',
             output: '',
         };
+        this.token = null;
         this.executeCode = this.executeCode.bind(this);
     }
+
+    componentDidMount(){
+        this.getToken();
+    }
+
+    async getToken(){
+        const rawResponse = await fetch(server_url,{method: 'GET'});
+        const response = await rawResponse.json();
+        this.token = response.token;
+    }
+
     async executeCode(){
         const rawResponse = await fetch(server_url, {
             method: 'POST',
@@ -25,7 +34,8 @@ export default class Home extends Component{
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-                code: this.state.input
+                code: this.state.input,
+                token: this.token
             })
         });
         const content = await rawResponse.json();
@@ -93,7 +103,9 @@ export default class Home extends Component{
                         </div>
                     </div>
                     <div id="terminal">
+                        <pre style={{color:"#fff", fontSize:13}}>
                         { this.state.output }
+                        </pre>
                     </div>
                 </div>
             </section>

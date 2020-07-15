@@ -1,4 +1,23 @@
 Code editor Front end make in ReactJs Project
+
+## Docker
+
+```
+# Build
+$ docker build -t sample:dev .
+
+# RUN
+$ docker run \
+    -it \
+    --rm \
+    -v ${PWD}:/app \
+    -v /app/node_modules \
+    -p 3001:3000 \
+    -e CHOKIDAR_USEPOLLING=true \
+    sample:dev
+```
+
+
 ## Available Scripts
 
 In the project directory, you can run:
