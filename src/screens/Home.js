@@ -12,19 +12,25 @@ export default class Home extends Component{
             input: '',
             output: '',
         };
-        this.token = null;
+        this.token = null; // localStorage.getItem('token') || null;
         this.executeCode = this.executeCode.bind(this);
     }
 
     componentDidMount(){
-        this.getToken();
+        if( this.token == null ){
+            this.getToken();
+        }
     }
 
     async getToken(){
         const rawResponse = await fetch(server_url,{method: 'GET'});
         const response = await rawResponse.json();
         this.token = response.token;
+        console.log("token", this.token);
+        //localStorage.setItem('token', this.token);
     }
+
+    
 
     async executeCode(){
         const rawResponse = await fetch(server_url, {
@@ -39,7 +45,6 @@ export default class Home extends Component{
             })
         });
         const content = await rawResponse.json();
-        console.log(content);
         this.setState({ output: content.result});
 
     }
