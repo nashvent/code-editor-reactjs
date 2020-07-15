@@ -5,10 +5,113 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-    
+
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+.jumbotron{
+  margin-bottom: 0 !important;
+  padding: 1rem 2rem !important;
+}
+.sidebar-wrapper {
+  display: block;
+  box-sizing: border-box;
+  width: 57px;
+  background: #eff2f7;
+  float: left;
+  padding: 8px;
+  height: calc(100vh - 90px);
+  border-top: 1px solid #d3dce6;
+  border-right: 1px solid #d3dce6;
+}
+.editor-desktop-top-bar, .terminal-desktop-top-bar {
+  background: #fbfbfb;
+  height: 48px;
+}
+.run {
+  cursor: pointer;
+  padding: 6px 16px;
+  background: #0556f3;
+  font-size: 14px;
+  line-height: 20px;
+  color: #ffffff;
+  border: none;
+  outline: none;
+  border-radius: 2px;
+  z-index: 109;
+  font-weight: bold;
+}
+.file-name {
+  display: inline-flex;
+  align-items: center;
+  background: #f5f5f5;
+  line-height: 24px;
+  padding: 12px 24px;
+  border-right: 1px solid #d3dce6;
+  /* border-top: 1px solid #d3dce6; */
+  border-top: 1px solid #d3dce6;
+  border-bottom: 1px solid rgb(245, 245, 245);
+  font-weight: 500;
+  font-size: 16px;
+  color: black;
+}
+.shell-name {
+  font-weight: 500;
+  line-height: 24px;
+  padding: 11px 18px;
+  border-top: 1px solid #d3dce6;
+  border-bottom: 1px solid #d3dce6;
+  color: black;
+}
+.desktop-top-bar {
+  display: flex;
+  flex: 1;
+  align-items: center;
+  justify-content: flex-end;
+  border-top: 1px solid #d3dce6;
+  border-bottom: 1px solid #d3dce6;
+}
+.desktop-run-button {
+  float: right;
+  margin: 0 20px 0 16px;
+}
+#editor .lines{
+  padding: 10px;
+}
+#terminal{
+  padding: 10px;
+}
+textarea.form-control {
+  height: calc(100vh - 140px) !important;
+}
+
+@media screen and (min-width: 800px) {
+  .editor-wrapper {
+    border-right: 1px solid #d3dce6;
+    background: #f5f5f5;
+  }
+  .editor-wrapper, .terminal-wrapper {
+    width: calc(50% - 1px - 28px);
+    float: left;
+    font-size: 12px;
+  }
+
+  .editor-wrapper {
+    height: calc(100vh - 90px);
+  }
+
+  .terminal-wrapper {
+    display: block;
+    background-color: black;
+    color: white;
+    height: calc(100vh - 90px);
+  }
+
+  .editor-desktop-top-bar {
+    display: flex;
+    justify-content: space-between;
+  }
 }
