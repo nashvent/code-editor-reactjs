@@ -6,21 +6,25 @@ export default class Home extends Component{
 
     render(){
         return(
-            <div >
-                <Grid container spacing={2}>
-                    <Grid item xs>
-                       <div style={{backgroundColor:"green"}}>
-                           <h1>Codigo</h1>
-                       </div>
-                    </Grid>
-                    <Grid item xs>
-                        <div style={{backgroundColor:"red"}}>
-                            <h1>Ejecucuion</h1>
+            <section id="service" className="service-python">
+                <div className="jumbotron jumbotron-fluid">
+                    <div className="container">
+                        <h1 className="display-4">Code Execution as a Service</h1>
+                        <p className="lead">By Anibal Ventura</p>
+                    </div>
+                </div>
+                <div className="container">
+                    <div className="row">
+                        <div className="col-md-6">
+                            hola
                         </div>
-                    </Grid>
-                    
-                </Grid>
-            </div>
+                        <div className="col-md-6">
+                            print
+                        </div>
+                    </div>
+                </div>
+            </section>
+
         );
     }
 }
