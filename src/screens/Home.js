@@ -3,7 +3,7 @@ import Editor from 'react-simple-code-editor';
 import { highlight, languages } from 'prismjs/components/prism-core';
 require('prismjs/components/prism-python');
 
-const server_url = "http://192.168.1.24:8080";
+const server_url = "http://192.168.1.24:8000";
 
 export default class Home extends Component{
     constructor(props) {
@@ -26,7 +26,6 @@ export default class Home extends Component{
         const rawResponse = await fetch(server_url,{method: 'GET'});
         const response = await rawResponse.json();
         this.token = response.token;
-        console.log("token", this.token);
         //localStorage.setItem('token', this.token);
     }
 
