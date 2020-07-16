@@ -3,7 +3,7 @@ import Editor from 'react-simple-code-editor';
 import { highlight, languages } from 'prismjs/components/prism-core';
 require('prismjs/components/prism-python');
 
-const server_url = "http://192.168.1.24:8000";
+const server_url =  process.env.REACT_APP_SERVER_URL || "http://192.168.1.24:8000";
 
 export default class Home extends Component{
     constructor(props) {
